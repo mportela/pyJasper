@@ -68,12 +68,12 @@ class JasperClient(object):
 
         return os.getenv('PYJASPER_SERVLET_URL', default='http://localhost:8080/pyJasper/jasper.py')
 
-    def generate_pdf_server(self, design, xpath, xmldata, metadata, multi=False):
+    def generate_server(self, design, xpath, xmldata, metadata, multi=False, output_type='pdf'):
         """Generate report via pyJasperServer."""
 
         url = self.find_server_url()
-
-        fields = dict(designs=design, xpath=xpath, xmldata=xmldata)
+        
+        fields = dict(design=design, xpath=xpath, xmldata=xmldata, output_type=output_type)
         if metadata:
             fields['metadata'] = urllib.urlencode(metadata)
 
@@ -87,9 +87,9 @@ class JasperClient(object):
             raise JasperException("%s -- %r" % (content, resp))
         return content
 
-    def generate_pdf(self, design, xpath, xmldata, metadata, multi=False):
+    def generate_report(self, design, xpath, xmldata, metadata, multi=False, output_type='pdf'):
         """Generate report via pyJasperServer."""
-        return self.generate_pdf_server(design, xpath, xmldata, metadata, multi)
+        return self.generate_server(design, xpath, xmldata, metadata, multi, output_type=output_type)
 
 
 class JasperGenerator(object):
@@ -135,15 +135,22 @@ class JasperGenerator(object):
         with open(self.reportname) as report:
             return report.read()
 
-    def generate_pdf(self, data=None):
-        """Generates a PDF document by using Jasper-Reports."""
+    def generate_report(self, data=None, output_type='pdf'):
+        """Generates a document by using Jasper-Reports."""
         server = JasperClient()
         design = self.get_report()
         xmldata = self.get_xml(data)
         if self.debug:
             open('/tmp/pyjasper-%s-debug.xml' % os.path.split(self.reportname)[-1], 'w').write(xmldata)
-        return server.generate_pdf(design, self.xpath, xmldata, self.metadata)
 
-    def generate(self, data=None):
-        """Generates a report, returns the PDF."""
-        return self.generate_pdf(data)
+        return server.generate_report(design, self.xpath, xmldata, self.metadata, output_type=output_type)
+
+
+    def generate(self, data=None, output_type='pdf'):
+        """Generates a report, returns the PDF or XLS."""
+
+        if output_type not in ('pdf', 'xml', 'rtf', 'xls', 'csv', 'text', 'html'):
+            raise JasperException, 'Unsupported data_type %s. Only pdf and xls supported.'
+
+        return self.generate_report(data, output_type=output_type)
+

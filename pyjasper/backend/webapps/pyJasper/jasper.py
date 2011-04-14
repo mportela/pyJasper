@@ -23,10 +23,21 @@ import urllib
 import urllib2
 
 
+CONTENT_TYPES = {
+    'pdf': "application/pdf",
+    'xml': "application/xml",
+    'rtf': "application/rtf",
+    'xls': "application/vnd.ms-excel",
+    'csv': "text/plain",
+    'text': "text/plain",
+    'html': "text/html",
+}
+
+
 def respond(data):
     """Write response to a given callback"""
 
-    headers = {"Content-type": "application/pdf"}
+    headers = {"Content-type": CONTENT_TYPES[data['output_type']]}
     stream = generate(data)
 
     try:
@@ -40,7 +51,7 @@ def generate(data):
     """Get rendered report from JasperReports"""
 
     jaspergenerator = XmlJasperInterface.JasperInterface(data['designs'], data['xpath'])
-    return jaspergenerator.generate(data['xmldata'], 'pdf',
+    return jaspergenerator.generate(data['xmldata'], output_type=data['output_type'] or 'pdf',
                                     sign_keyname=data['sign_keyname'], sign_reason=data['sign_reason'],
                                     metadata=data['metadata'])
 
@@ -90,6 +101,7 @@ class jasper(HttpServlet):
                 'sign_reason': request.getParameter('sign_reason'),
                 'callback': request.getParameter('callback'),
                 'metadata': request.getParameter('metadata'),
+                'output_type': request.getParameter('output_type'),
                }
 
         if ServletFileUpload.isMultipartContent(request):
@@ -144,8 +156,10 @@ class jasper(HttpServlet):
 
     def immediate_response(self, request, response, data):
         """Return data immediatly"""
-
-        response.setContentType("application/pdf")
+        output_type = data.get('output_type') or 'pdf'
+        print output_type
+        
+        response.setContentType(CONTENT_TYPES[output_type])
         out = response.getWriter()
         data = generate(data)
         out.write(data)
