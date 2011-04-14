@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+DEB_PYTHON_SYSTEM=pycentral
+DEB_PYTHON_MODULE_PACKAGES=python-pyjasper
+DEB_PYTHON_DESTDIR=debian/python-pyjasper
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
+
+#PYVERS=$(shell pyversions -vr)
+# Don't compress .py files
+DEB_COMPRESS_EXCLUDE := .py
+
+binary-install/python-pyjasper::
+	find debian -depth -name "*.pyc" -delete
+	dh_clearvcs -ppython-pyjasper
+	dh_environment -ppython-pyjasper
+
+binary-install/python-pyjasper-server::
+	dh_clearvcs -ppython-pyjasper

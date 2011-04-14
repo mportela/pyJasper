@@ -35,6 +35,6 @@ export PYJASPER_KEYSTORE_FILE="/usr/local/pyJasper/signature-keystore.ks"
 java $@ -cp $MYCLASSPATH -Dfile.encoding=utf-8 \
   -Dnet.sf.jasperreports.awt.ignore.missing.font=true \
   -Dpython.home=./lib \
-  -Djetty.port=5555 \
+  -Djetty.port=8080 \
   -DSTOP.KEY=blaat -DSTOP.PORT=8079 \
   -jar start.jar
