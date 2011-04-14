@@ -5,15 +5,19 @@ DEB_PYTHON_MODULE_PACKAGES=python-pyjasper
 DEB_PYTHON_DESTDIR=debian/python-pyjasper
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
+LOGDIR=debian/python-pyjasper-server/usr/local/pyJasper/pyjasper/backend/logs
 
 #PYVERS=$(shell pyversions -vr)
 # Don't compress .py files
 DEB_COMPRESS_EXCLUDE := .py
 
 binary-install/python-pyjasper::
-	find debian -depth -name "*.pyc" -delete
 	dh_clearvcs -ppython-pyjasper
-	dh_environment -ppython-pyjasper
 
 binary-install/python-pyjasper-server::
 	dh_clearvcs -ppython-pyjasper
+	find debian -type f -name '*.pkc' -delete
+	find debian -type f -name '*$py.class' -delete
+	find debian -type f -name 'packages.idx' -delete
+	find debian/python-pyjasper-server/usr/local/pyJasper/pyjasper/backend/logs -type f -delete
+

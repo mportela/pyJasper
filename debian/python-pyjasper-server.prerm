@@ -1,0 +1,23 @@
+#!/bin/sh
+# prerm script for python-pyjasper-server
+#
+# see: dh_installdeb(1)
+
+set -e
+
+#DEBHELPER#
+
+if [[ "$1" = "remove" || "$1" = "upgrade" ]]; then
+    /etc/init.d/pyjasper-server stop
+fi
+
+if [[ "$1" = "remove" ]]; then
+	find /usr/local/pyJasper -type f -name '*.pyc' -delete
+	find /usr/local/pyJasper -type f -name '*.pkc' -delete
+	find /usr/local/pyJasper -type f -name '*$py.class' -delete
+	find /usr/local/pyJasper -type f -name 'packages.idx' -delete
+	find /usr/local/pyJasper/pyjasper/backend/logs -type f -delete
+fi
+
+
+exit 0

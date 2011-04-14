@@ -1,3 +1,12 @@
+python-pyjasper (0.42-2) unstable; urgency=low
+
+  [ Mikhail Petrov ]
+  * Added support for JasperReports 3.7.4
+  * Added support for exporting xml, rtf, xls, csv, text, html.
+    (!)Tested xls only.
+
+ -- Mikhail Petrov <mixael@yandex-team.ru>  Thu, 14 Apr 2011 14:44:17 +0400
+
 python-pyjasper (0.42-1) unstable; urgency=low
 
   * Initial release.

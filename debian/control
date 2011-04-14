@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Mikhail Petrov <mixael@yandex-team.ru>
 Build-Depends: cdbs (>= 0.4.49), debhelper (>= 5.0.42),
-    yandex-dh-environment, yandex-dh-clearvcs
+    yandex-dh-environment, yandex-dh-clearvcs,
     python-all (>= 2.3.5-11), python-central (>= 0.6.6), python-setuptools
 Standards-Version: 3.9.1
 XS-Python-Version: >= 2.6
@@ -19,7 +19,9 @@ Package: python-pyjasper-server
 Architecture: all
 Depends:
   ${python:Depends},
-  java
+  default-jre-headless | java2-runtime-headless,
+  ubic,
+  python-pyjasper
 XB-Python-Version: ${python:Versions}
 Description: Service for generating pdf, rtf, xls, csv, txt and html files.
 

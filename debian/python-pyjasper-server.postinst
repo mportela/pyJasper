@@ -1,0 +1,14 @@
+#!/bin/sh
+# postinst script for python-pyjasper-server
+#
+# see: dh_installdeb(1)
+
+set -e
+
+#DEBHELPER#
+
+if [[ "$1" = "configure" ]]; then
+    /etc/init.d/pyjasper-server start
+fi
+
+exit 0

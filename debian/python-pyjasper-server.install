@@ -1,0 +1,3 @@
+pyjasper/backend /usr/local/pyJasper/pyjasper/
+debian/ubic/pyjasper-server /etc/ubic/service/
+debian/init/pyjasper-server /etc/init.d/
