@@ -1,3 +1,16 @@
+python-pyjasper (0.42-4) unstable; urgency=low
+
+  * Bugbix: Make pyjasper/backend/pyJasper-httpd.sh executable
+
+ -- Mikhail Petrov <mixael@yandex-team.ru>  Tue, 19 Apr 2011 12:45:43 +0400
+
+python-pyjasper (0.42-3) unstable; urgency=low
+
+  * Fixed dependency list for python-pyjasper package (added python-
+    httplib2 and python-simplejson)
+
+ -- Mikhail Petrov <mixael@yandex-team.ru>  Tue, 19 Apr 2011 12:12:53 +0400
+
 python-pyjasper (0.42-2) unstable; urgency=low
 
   [ Mikhail Petrov ]
