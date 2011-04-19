@@ -12,6 +12,8 @@ Package: python-pyjasper
 Architecture: all
 Depends:
   ${python:Depends},
+  python-httplib2,
+  python-simplejson
 XB-Python-Version: ${python:Versions}
 Description: Service for generating pdf, rtf, xls, csv, txt and html files.
 
