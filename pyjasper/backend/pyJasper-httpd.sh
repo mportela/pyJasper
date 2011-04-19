@@ -37,4 +37,5 @@ java $@ -cp $MYCLASSPATH -Dfile.encoding=utf-8 \
   -Dpython.home=./lib \
   -Djetty.port=5555 \
   -DSTOP.KEY=blaat -DSTOP.PORT=8079 \
+  -Djava.awt.headless=true \
   -jar start.jar
