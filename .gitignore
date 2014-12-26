@@ -6,3 +6,5 @@ dist/
 .DS_Store
 pyjasper/backend/lib/cachedir/
 pyjasper/backend/logs/
+*.sublime-project
+*.sublime-workspace
