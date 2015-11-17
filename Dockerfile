@@ -1,10 +1,10 @@
 # pyJasper
 #
-# VERSION               0.0.0
+# VERSION               6.0.0
 
 FROM      dockerfile/java:oracle-java7
 
-MAINTAINER Mikhail Petrov <me@mixael.ru>
+MAINTAINER Marcel Portela <marcel.portela@gmail.com>
 
 ADD ./ /usr/local/pyJasper
 
