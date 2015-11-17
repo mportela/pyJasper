@@ -30,6 +30,8 @@ If you provided sign_keyname and sign_reason AND your backend installation knows
 
 With parameter callback you tell the server to generate the pdf and send it to the given URL instead of immediate return. 
 
+To stop "the jetty servlet container" you can use the `sh pyJasper-httpd_stop.sh`
+
 ### Python interface
 
 You are expected to subclass `pyjasper.JasperGenerator` and call it's `generate_pdf()` function. Usually you only have to overwrite the `__init__()` and `generate_xml(self, ...)` functions and use the the Python [ElementTree](http://docs.python.org/lib/module-xml.etree.ElementTree.html) API to generate an xml-tree. E.g.
@@ -64,6 +66,10 @@ The Python client finds the URL of the Jasper Servlet by checking the @PYJASPER_
 
 Get it at the [Python Cheeseshop](http://pypi.python.org/pypi/pyJasper) or at [GitHub](http://github.com/hudora/pyJasper)
 To install the Python client interface  just execute `python setup.py install` as administrator. This should install the requred dependency [httplib2](http://code.google.com/p/httplib2/) automatically. For the Server part there exist no automatic setup script. Just copy `pyjasper/backend/`  to a suitable location and start `pyJasper-httpd.sh` I use Dan Bernsteins [supervise](http://cr.yp.to/daemontools/supervise.html) tool for running the Jetty server.
+
+#### Use more Docker !!!
+
+We have a self explanatory 'dockerfile', just build the container with `docker build` and later you can RUN it... this will start the servlet container in port "5555" so it's better to run your docker container with the `-p 5555:5555` to expose the servelt port
 
 #### exampledeployment on Amazon EC2
 
@@ -106,6 +112,7 @@ Finally configure daemontools to run the following command as a service:
 
 ## History
 
+* **6.0.0*** bump version to reflect JasperReport version compatibility
 * **0.2.1*** public release (Summer 2008)
 * **0.2*** release based on Jetty/Servlets (late 2007)
 * **0.1.1*** public release on hosted-projects.com

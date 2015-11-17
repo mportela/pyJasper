@@ -1,3 +1,4 @@
+6.0.0 upgrade to JasperReports 6.0.0, added dockerfile (thanks https://github.com/mix86/pyJasper)
 0.42 JasperGenerator.get_report gives an opportunity to override the loading of templates
 0.41b comes with debugging in JasperGenerator
 0.41 added get_reportname function
