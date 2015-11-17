@@ -71,6 +71,10 @@ To install the Python client interface  just execute `python setup.py install` a
 
 We have a self explanatory 'dockerfile', just build the container with `docker build` and later you can RUN it... this will start the servlet container in port "5555" so it's better to run your docker container with the `-p 5555:5555` to expose the servelt port
 
+Example running the servlet with one line and without installing any deppendencies (just docker)
+
+`docker run --rm -p 5555:5555 mportela/pyjasper`
+
 #### exampledeployment on Amazon EC2
 
 ##### Create an new instance via AWS Management console
