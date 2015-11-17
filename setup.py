@@ -2,10 +2,10 @@ import codecs
 from setuptools import setup, find_packages
 
 setup(name='pyJasper',
-      maintainer='Maximillian Dornseif',
-      maintainer_email='md@hudora.de',
-      url='https://github.com/hudora/pyJasper',
-      version='0.42',
+      maintainer='Marcel Portela',
+      maintainer_email='marcel.portela@gmail.com',
+      url='https://github.com/mportela/pyJasper',
+      version='6.0.0',
       description='toolkit to access JasperReports from Python',
       long_description=codecs.open('README.markdown', "r", "utf-8").read(),
       license='BSD',
