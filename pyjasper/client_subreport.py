@@ -31,7 +31,6 @@ class JasperGeneratorWithSubreport(object):
 
         self.metadata = None
         self.mainreport = os.path.abspath(os.path.join(self.reportrootdir, self.reportbase + '.jrxml'))
-gene
         #self.mainreport = None
         self.subreportlist = []
 
