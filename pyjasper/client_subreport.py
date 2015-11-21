@@ -29,8 +29,9 @@ class JasperGeneratorWithSubreport(object):
     def __init__(self):
         super(JasperGeneratorWithSubreport, self).__init__()
 
+        self.metadata = None
         self.mainreport = os.path.abspath(os.path.join(self.reportrootdir, self.reportbase + '.jrxml'))
-
+gene
         #self.mainreport = None
         self.subreportlist = []
 
@@ -67,14 +68,16 @@ class JasperGeneratorWithSubreport(object):
         """Generates a PDF document by using Jasper-Reports."""
         server = JasperClient()
         designs = {'main': open(self.mainreport).read()}
+        multi = False
         for report in self.subreportlist:
+            multi = True
             name = str(os.path.splitext(os.path.basename(report))[0])
             designs[name] = open(report).read()
 
         reportjson = json.dumps(designs)
 
         xmldata = self.get_xml(data)
-        return server.generate_pdf(reportjson, self.xpath, xmldata, multi=True)
+        return server.generate_pdf(reportjson, self.xpath, xmldata, self.metadata, multi=multi)
 
     def generate(self, data=None):
         """Generates a report, returns the PDF."""
