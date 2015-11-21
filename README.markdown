@@ -69,7 +69,12 @@ To install the Python client interface  just execute `python setup.py install` a
 
 #### Use more Docker !!!
 
-We have a self explanatory 'dockerfile', just build the container with `docker build` and later you can RUN it... this will start the servlet container in port "5555" so it's better to run your docker container with the `-p 5555:5555` to expose the servelt port
+If you want, we are on docker hub: https://hub.docker.com/r/mportela/pyjasper/
+
+so you can just pull the image:
+`docker pull mportela/pyjasper`
+
+Also, we have a self explanatory 'dockerfile', just build the container with `docker build` and later you can RUN it... this will start the servlet container in port "5555" so it's better to run your docker container with the `-p 5555:5555` to expose the servelt port
 
 Example running the servlet with one line and without installing any deppendencies (just docker)
 
