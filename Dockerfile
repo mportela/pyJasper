@@ -2,7 +2,7 @@
 #
 # VERSION               6.0.0
 
-FROM      dockerfile/java:oracle-java7
+FROM      mportela/oracle-java7:latest
 
 MAINTAINER Marcel Portela <marcel.portela@gmail.com>
 
